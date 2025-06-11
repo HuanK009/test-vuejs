@@ -6,7 +6,7 @@
       <input
         type="text"
         :value="address"
-        @input="$emit('update:address', $event)"
+        @input="$emit('update:address', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:address')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.address }"
@@ -20,7 +20,7 @@
       <input
         type="text"
         :value="country"
-        @input="$emit('update:country', $event)"
+        @input="$emit('update:country', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:country')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.country }"
@@ -34,7 +34,7 @@
       <input
         type="text"
         :value="postalCode"
-        @input="$emit('update:postalCode', $event)"
+        @input="$emit('update:postalCode', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:postalCode')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.postalCode }"
@@ -49,7 +49,7 @@
         type="date"
         :value="dateOfBirth"
         :max="maxDate"
-        @input="$emit('update:dateOfBirth', $event)"
+        @input="$emit('update:dateOfBirth', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:dateOfBirth')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.dateOfBirth }"
@@ -62,7 +62,7 @@
       <label class="block font-semibold">Gender*</label>
       <select
         :value="gender"
-        @input="$emit('update:gender', $event)"
+        @input="$emit('update:gender', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:gender')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.gender }"
@@ -80,7 +80,7 @@
       <label class="block font-semibold">Marital Status*</label>
       <select
         :value="maritalStatus"
-        @input="$emit('update:maritalStatus', $event)"
+        @input="$emit('update:maritalStatus', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:maritalStatus')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.maritalStatus }"

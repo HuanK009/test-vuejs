@@ -5,7 +5,7 @@
       <label class="block font-semibold">Hobbies</label>
       <textarea
         :value="hobbies"
-        @input="$emit('update:hobbies', $event)"
+        @input="$emit('update:hobbies', ($event.target as HTMLInputElement).value)"
         rows="2"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.hobbies }"
@@ -18,7 +18,7 @@
       <label class="block font-semibold">Favorite Sports</label>
       <textarea
         :value="sports"
-        @input="$emit('update:sports', $event)"
+        @input="$emit('update:sports', ($event.target as HTMLInputElement).value)"
         rows="2"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.sports }"
@@ -31,7 +31,7 @@
       <label class="block font-semibold">Favorite Music</label>
       <textarea
         :value="music"
-        @input="$emit('update:music', $event)"
+        @input="$emit('update:music', ($event.target as HTMLInputElement).value)"
         rows="2"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.music }"
@@ -44,7 +44,7 @@
       <label class="block font-semibold">Favorite Movies</label>
       <textarea
         :value="movies"
-        @input="$emit('update:movies', $event)"
+        @input="$emit('update:movies', ($event.target as HTMLInputElement).value)"
         rows="2"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.movies }"

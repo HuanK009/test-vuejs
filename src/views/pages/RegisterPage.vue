@@ -137,7 +137,8 @@ import { useRouter } from 'vue-router'
 import type { RegisterForm } from '@/models'
 import IconEyeOff from '@/components/icons/IconEyeOff.vue'
 import IconEyeOpen from '@/components/icons/IconEyeOpen.vue'
-import { registerNewUser } from '@/api'
+// import { registerNewUser } from '@/services/api'
+import { registerNewUser } from '@/services/demoAPI'
 
 const router = useRouter()
 const error = ref('')

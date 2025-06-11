@@ -46,7 +46,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { logoutUser } from '@/api'
+// import { logoutUser } from '@/services/api'
+import { logoutUser } from '@/services/demoAPI'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
@@ -56,15 +57,14 @@ const toggleMenu = (value = false) => {
 }
 
 const logout = async () => {
-  const token = localStorage.getItem('token')
-  if (token) {
-    const result = await logoutUser()
+  console.log('aaloo')
 
-    if (result.success) {
-      location.reload()
-    } else {
-      console.warn('Logout failed:', result.msg || 'Unknown error')
-    }
+  const result = await logoutUser()
+
+  if (result.success) {
+    location.reload()
+  } else {
+    console.warn('Logout failed:', result.msg || 'Unknown error')
   }
 }
 </script>

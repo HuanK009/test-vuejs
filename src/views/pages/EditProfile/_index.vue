@@ -81,7 +81,7 @@
                   alt="Avatar Preview"
                   class="object-cover w-full h-full"
                 />
-                <span v-else class="text-gray-500 text-sm">No image</span>
+                <span v-else class="text-white text-sm">No image</span>
               </div>
             </div>
 
@@ -186,9 +186,10 @@ import basic_details from './basic_details.vue'
 import additional_info from './additional_info.vue'
 import spouse_details from './spouse_details.vue'
 import personal_pref from './personal_pref.vue'
-import { getUser, updateUser } from '@/api'
-import axios from 'axios'
-import { gender, marital_status, salutation, type updateForm } from '@/models'
+// import { getUser, updateUser } from '@/services/api'
+import { clearCachedUser, getUser, updateUser, uploadAvatar } from '@/services/demoAPI'
+// import axios from 'axios'
+import { gender, marital_status, salutation, type updateForm, type User } from '@/models'
 
 const loading = ref<boolean>(true)
 const router = useRouter()
@@ -199,7 +200,8 @@ const open_personal_pref = ref<boolean>(false)
 const userId = ref<string>('')
 const form = ref<updateForm>({
   section: 'basic_details',
-  avatar: null as File | null,
+  // avatar: null as File | null,
+  avatar: '',
   avatar_url: '',
   // Basic Details
   salutation: 'Mr.' as salutation,
@@ -259,9 +261,10 @@ const errors = ref({
 
 const fetchUser = async () => {
   try {
-    const res = await getUser()
-    userId.value = res.data.id || ''
-    form.value.avatar_url = 'http://convertium-test.local/' + res.data.avatar || ''
+    const res = (await getUser()) as { data: User }
+    userId.value = res.data.id || '1'
+    form.value.avatar_url = res.data.avatar || ''
+    form.value.avatar = res.data.avatar || ''
     form.value.email = res.data.email || ''
     form.value.salutation = res.data.salutation || ''
     form.value.first_name = res.data.first_name || ''
@@ -270,9 +273,10 @@ const fetchUser = async () => {
     form.value.additional_info.country = res.data.additional_info?.country || ''
     form.value.additional_info.postal_code = res.data.additional_info?.postal_code || ''
     form.value.additional_info.date_of_birth = res.data.additional_info?.date_of_birth || ''
-    form.value.additional_info.gender = res.data.additional_info?.gender || ''
-    form.value.additional_info.marital_status = res.data.additional_info?.marital_status || ''
-    form.value.spouse_info.salutation = res.data.spouse_info?.salutation || ''
+    form.value.additional_info.gender = res.data.additional_info?.gender || ('other' as gender)
+    form.value.additional_info.marital_status =
+      res.data.additional_info?.marital_status || ('single' as marital_status)
+    form.value.spouse_info.salutation = res.data.spouse_info?.salutation || ('Mr.' as salutation)
     form.value.spouse_info.first_name = res.data.spouse_info?.first_name || ''
     form.value.spouse_info.last_name = res.data.spouse_info?.last_name || ''
     form.value.personal_pref.hobbies = res.data.personal_pref?.hobbies || ''
@@ -454,22 +458,33 @@ async function handleImageUpload(event: Event) {
 
   if (file) {
     form.value.avatar_url = URL.createObjectURL(file)
-    form.value.avatar = file
+    // form.value.avatar = file
 
-    const formData = new FormData()
-    formData.append('avatar', file)
-    formData.append('id', userId.value || '')
+    // const formData = new FormData()
+    // formData.append('avatar', file)
+    // formData.append('id', userId.value || '')
 
+    // try {
+    //   const res = await axios.post('/api/user/avatar', formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //       Authorization: `Bearer ${localStorage.getItem('token')}`, // if using token
+    //     },
+    //   })
+    //   form.value.avatar = res.data.avatar_url // update image preview
+    // } catch (err) {
+    //   console.error('Upload failed:', err)
+    // }
     try {
-      const res = await axios.post('/api/user/avatar', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // if using token
-        },
-      })
-      form.value.avatar = res.data.avatar_url // update image preview
-    } catch (err) {
-      console.error('Upload failed:', err)
+      const reader = new FileReader()
+      reader.onload = () => {
+        form.value.avatar = reader.result as string // Update the avatar URL in user data
+        clearCachedUser()
+        localStorage.setItem('cached-users', JSON.stringify(form.value))
+      }
+      reader.readAsDataURL(file)
+    } catch (error) {
+      console.error('Error updating user with avatar:', error)
     }
   }
 }

@@ -15,7 +15,7 @@
         <div
           class="bg-gray-500 rounded-full w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 overflow-hidden p-1"
         >
-          <img :src="'http://convertium-test.local/' + user?.avatar" alt="" />
+          <img :src="user?.avatar" alt="" />
         </div>
       </div>
 

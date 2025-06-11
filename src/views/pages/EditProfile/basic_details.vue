@@ -5,7 +5,7 @@
       <label class="block font-semibold">Salutation*</label>
       <select
         :value="salutation"
-        @input="$emit('update:salutation', $event)"
+        @input="$emit('update:salutation', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:salutation')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.salutation }"
@@ -24,7 +24,7 @@
       <input
         type="text"
         :value="firstName"
-        @input="$emit('update:firstName', $event)"
+        @input="$emit('update:firstName', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:firstName')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.first_name }"
@@ -40,7 +40,7 @@
       <input
         type="text"
         :value="lastName"
-        @input="$emit('update:lastName', $event)"
+        @input="$emit('update:lastName', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:lastName')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.last_name }"
@@ -56,7 +56,7 @@
       <input
         type="email"
         :value="email"
-        @input="$emit('update:email', $event)"
+        @input="$emit('update:email', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur:email')"
         class="w-full border rounded px-3 py-2"
         :class="{ 'border-red-500': errors.email }"

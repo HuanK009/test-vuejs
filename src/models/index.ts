@@ -25,7 +25,8 @@ export interface User {
   additional_info?: additional_info // Additional information about the user
   spouse_info?: spouse_info // Spouse information of the user
   personal_pref?: personal_pref // Personal information of the user
-  avatar?: File // URL to the user's avatar image
+  // avatar?: File // URL to the user's avatar image
+  avatar?: string // URL to the user's avatar image
 }
 export enum gender {
   Male = 'male',
@@ -77,7 +78,8 @@ export interface updateForm {
   additional_info: additional_info // Additional information about the user
   spouse_info: spouse_info // Spouse information of the user
   personal_pref: personal_pref // Personal information of the user
-  avatar?: File | null // URL to the user's avatar image
+  avatar?: string | null // URL to the user's avatar image
+  // avatar?: File | null // URL to the user's avatar image
   section?: 'basic_details' | 'additional_info' | 'spouse_detail' | 'personal_pref' // Section to update
   avatar_url?: string // URL to the user's avatar image
 }

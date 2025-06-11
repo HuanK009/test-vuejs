@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getUser } from '@/api'
+// import { getUser } from '@/services/api'
+import { getUser } from '@/services/demoAPI'
 import axios from '../lib/axios'
 
 import MyProfile from '../views/pages/MyProfile/_index.vue'

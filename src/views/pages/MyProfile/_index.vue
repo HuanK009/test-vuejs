@@ -78,7 +78,8 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { getUser } from '@/api'
+// import { getUser } from '@/services/api'
+import { getUser } from '@/services/demoAPI'
 import type { User } from '@/models'
 import logo_component from '@/components/logo_component.vue'
 import side_menu from '@/components/side_menu.vue'

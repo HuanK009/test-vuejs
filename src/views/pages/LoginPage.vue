@@ -96,7 +96,8 @@ import { useRouter } from 'vue-router'
 import IconEyeOff from '@/components/icons/IconEyeOff.vue'
 import IconEyeOpen from '@/components/icons/IconEyeOpen.vue'
 import type { LoginForm } from '@/models'
-import { loginUser } from '@/api'
+// import { loginUser } from '@/services/api'
+import { loginUser } from '@/services/demoAPI'
 const loading = ref<boolean>(false)
 const router = useRouter()
 
