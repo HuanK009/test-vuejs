@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+body {
+  margin: 0;
+  display: block;
+}
+#app {
+  width: 100vw;
+  height: 100%;
+  padding: 0;
+  font-weight: normal;
+  display: block;
+}
+.bg-login {
+  background: url('./bg.jpg') no-repeat center;
+  background-size: cover;
+}
+.bg-blue {
+  background: url('./bg.jpg') no-repeat center;
+  background-size: cover;
+}
+.loader {
+  background: url('./loader.gif') no-repeat center center;
+  background-size: cover;
+}
+* {
+  transition: 0.2s;
+}
+
+a,
+.green {
+  /* text-decoration: none; */
+  /* color: hsla(160, 100%, 37%, 1); */
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration: none;
+    /* background-color: hsla(160, 100%, 37%, 0.2); */
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  /* #app {
+    display: block;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  } */
+}
