@@ -187,7 +187,7 @@ import additional_info from './additional_info.vue'
 import spouse_details from './spouse_details.vue'
 import personal_pref from './personal_pref.vue'
 // import { getUser, updateUser } from '@/services/api'
-import { clearCachedUser, getUser, updateUser, uploadAvatar } from '@/services/demoAPI'
+import { clearCachedUser, getUser, updateUser } from '@/services/demoAPI'
 // import axios from 'axios'
 import { gender, marital_status, salutation, type updateForm, type User } from '@/models'
 

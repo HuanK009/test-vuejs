@@ -98,7 +98,7 @@ const open_personal_pref = ref<boolean>(false)
 
 const fetchUser = async () => {
   try {
-    const res = await getUser()
+    const res = (await getUser()) as { data: User }
     user.value = res.data
     console.log('User fetched successfully:', user.value)
   } catch (err) {
