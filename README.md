@@ -43,3 +43,7 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Demo account 
+email: demo@email.com
+password: demo123
